@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>İlçe</title>
+</h:head>
+<h:body>
+	<p:layout>
+
+		<p:layoutUnit position="west" header="Menu">
+			<h:form>
+				<p:menu>
+					<p:menuitem url="il.jsf" value="il" />
+					<p:menuitem url="ilce.jsf" value="ilce"
+						styleClass="ui-state-active" />
+				</p:menu>
+			</h:form>
+		</p:layoutUnit>
+
+
+		<p:layoutUnit position="center" header="Ilce">
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="Ilce Adı" />
+					<p:inputText value="#{ilceController.ilce.adi}" />
+					<h:outputText value="Il" />
+					<p:selectOneMenu value="#{ilceController.ilce.il}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{ilController.iller}" var="il"
+							itemLabel="#{il.adi}" itemValue="#{il}" />
+					</p:selectOneMenu>
+					<p:commandButton value="Ekle" action="#{ilceController.kaydet()}"
+						update="tabIlce" />
+				</h:panelGrid>
+
+				<br />
+
+				<p:dataTable id="tabIlce" value="#{ilceController.ilceler}"
+					var="ilce" sortBy="#{ilce.id}">
+					<p:column headerText="id">
+						<h:outputText value="#{ilce.id}" />
+					</p:column>
+					<p:column headerText="adi">
+						<h:outputText value="#{ilce.adi}" />
+					</p:column>
+					<p:column headerText="il">
+						<h:outputText value="#{ilce.il.adi}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:layoutUnit>
+	</p:layout>
+
+</h:body>
+</html>

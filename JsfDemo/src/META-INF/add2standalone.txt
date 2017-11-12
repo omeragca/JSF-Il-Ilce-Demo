@@ -1,0 +1,22 @@
+<datasource jta="true" jndi-name="java:/DemoDS" pool-name="DemoDS" enabled="true" use-ccm="true">
+    <connection-url>jdbc:postgresql://localhost:5432/demo</connection-url>
+    <driver-class>org.postgresql.Driver</driver-class>
+    <driver>postgresql-42.1.4.jar</driver>
+    <security>
+        <user-name>postgres</user-name>
+        <password>1234</password>
+    </security>
+    <validation>
+        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+        <background-validation>true</background-validation>
+        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+    </validation>
+</datasource>
+
+...
+
+<deployments>
+    <deployment name="postgresql-42.1.4.jar" runtime-name="postgresql-42.1.4.jar">
+        <content sha1="1c7788d16b67d51f2f38ae99e474ece968bf715a"/>
+    </deployment>
+</deployments>
